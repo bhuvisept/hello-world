@@ -1,0 +1,10 @@
+.Header_block{
+	height:50px;
+	float:right;
+	width:100%;
+	border-bottom:1px solid #CCCCCC;
+	padding:2px;
+}
+.pointer{
+	cursor:pointer;
+}

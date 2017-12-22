@@ -29,13 +29,13 @@ var server = oauth2orize.createServer();
 
 
 server.serializeClient(function(client, callback) {
-  console.log("111111111111");
+  //console.log("111111111111");
   return callback(null, client._id);
 });
 
 server.deserializeClient(function(id, callback) {
-   console.log("222222");
-  Client.findOne({ _id: id }, function (err, client) {
+   //console.log("222222");
+    Client.findOne({ _id: id }, function (err, client) {
     if (err) { return callback(err); }
     return callback(null, client);
   });
@@ -58,7 +58,7 @@ server.deserializeClient(function(id, callback) {
 server.grant(oauth2orize.grant.code(function(client, redirectUri, user, ares, callback) {
   // Create a new authorization code
 
-  console.log("I am in grant section");
+  //console.log("I am in grant section");
 
   var code = new Code({
     value: uid(16),
@@ -113,7 +113,7 @@ server.exchange(oauth2orize.exchange.clientCredentials(function(client, scope, c
     });  
 
 }))
-console.log("dsdfsdfsdgdsg");
+//console.log("dsdfsdfsdgdsg");
 
 //AFTER HITTING ROUTE THIS FUNCTION WILL CALL , THIS WILL VERIFY USER NAME AND PASSWORD, 
 // IF PASSWORD IS MATCHED , NEW TOKEN IS CREATED ,EXPIRE DATE CREATED 
@@ -164,9 +164,9 @@ server.exchange(oauth2orize.exchange.password(function (client, username, passwo
                 
                 refreshTokenObj.save(function(err) {
                     
-                    console.log("refreshtoken Saved: "+refreshTokenHash);
+                    console.log("refreshtoken Saved: "+user);
                     if (err) return callback(err)
-                    callback(null, token, refreshToken, {expires_in: expirationDate})    
+                    callback(null, token, refreshToken, {expires_in: expirationDate,UserID:user._id,username:user.username,password:user.password})    
                 });    
             });                        
         });

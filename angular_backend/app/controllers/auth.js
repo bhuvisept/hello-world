@@ -15,17 +15,24 @@ passport.use('client-basic',new BasicStrategy(
     function(username, password, callback) {
         //console.log("8888888888888");
         User.findOne({ username: username }, function (err, user) {
-            if (err) { return callback(err); }
-
+            if (err) { 
+                return callback(err); 
+            }
             // No user found with that username
-            if (!user) { return callback(null, false); }
+            if (!user) { 
+                return callback(null, false); 
+            }
 
             // Make sure the password is correct
             user.verifyPassword(password, function(err, isMatch) {
-                if (err) { return callback(err); }
+                if (err) { 
+                    return callback(err); 
+                }
 
                 // Password did not match
-                if (!isMatch) { return callback(null, false); }
+                if (!isMatch) { 
+                    return callback(null, false); 
+                }
 
                 // Success
                 return callback(null, user);
@@ -39,9 +46,13 @@ exports.isAuthenticated = passport.authenticate(['basic', 'bearer'], { session :
 
 passport.use('client-basic', new BasicStrategy(
     function(username, password, callback) {
+        console.log("STEP 2");
+        console.log("User==",username);
+        console.log("Password 2==",password);
         console.log("I am in basic client section");
+
         Client.findOne({ id: username }, function (err, client) {
-            console.log("I am in basic client section",client);
+            //console.log("I am in basic client section",client);
             if (err) { return callback(err); }
 
             // No client found with that id or bad password
@@ -49,21 +60,21 @@ passport.use('client-basic', new BasicStrategy(
 
             // Make sure the secret is correct
             client.verifySecret(password, function(err, isMatch) {
-                console.log("I am in basic client section===",isMatch);
+                //console.log("I am in basic client section===",isMatch);
                 if (err) { 
-
-                    return callback(err); }
-                console.log("err",err);
+                    return callback(err); 
+                }
+                //console.log("err",err);
                 
                 // Password did not match
 
                 if (!isMatch) {
-                    console.log("hello");
-                 return callback(null, false);
-                 }
+                    //console.log("hello");
+                    return callback(null, false);
+                }
                 
                 // Success
-                console.log("client????????????????????",client);
+                //console.log("client????????????????????",client);
                 return callback(null, client);
                 
             });

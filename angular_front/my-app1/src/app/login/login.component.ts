@@ -1,49 +1,55 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit,Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+//import 'rxjs/add/operator/map';
 // SERVICE INCLUDED HERE
-import {LoginService} from './services/login.service';
+import {LoginService} from '../services/login.service';
 
+import { CookieService } from 'ngx-cookie';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
   providers: [LoginService]
 })
+
+@Injectable()
 export class LoginComponent implements OnInit {
-  model:loginModel; 
-  user_name:string
-  user_password:string
-    /*constructor() { 
-      this.model=new loginModel();
-    }*/
-    constructor(
+    model:loginModel; 
+    user_name:string
+    user_password:string
+    cookieValue : object;
+
+     constructor(
       private _loginService:LoginService,
+      private cookieService:CookieService,
+      private router: Router,  
     ){
       this.model=new loginModel();
     }
 
 
-  ngOnInit() {
-      //this.model.user_name="jain";
-      //this.model.user_password="jaijn";
+    ngOnInit() {
+        
+    }
+    onSubmit(){
+       
+        this._loginService.login(this.model).subscribe(res=>{
+          this.cookieService.putObject('USERDATA',res);
+          this.cookieValue = this.cookieService.getObject('USERDATA');
+          //console.log("==========",this.cookieValue);
+          if(res.UserID){
+            this.router.navigate(['/dashboard']);
+          }else{
+            this.router.navigate(['/login']);
+          }
+        },
+        err=>{
+          console.log("You are in error section");
+        });
+    }
     
-  }
-  onSubmit(){
-      //console.log("I am here==>",this.model.user_name+"--"+this.model.user_password);
-      // for business logic call service here
-      this._loginService.login(this.model).subscribe(res=>{
-        console.log(res);
-        if(res.success){
-          console.log("you are in success section")
-        }else{
-          console.log("Failed");
-        }
-      },
-      err=>{
-        console.log("You are in error section");
-      });
-  }
 }
+
 export class loginModel{
   user_name:string;
   user_password:string;

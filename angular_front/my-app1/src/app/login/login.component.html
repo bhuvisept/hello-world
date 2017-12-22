@@ -8,17 +8,17 @@
                         <h4 class="title">Login</h4>
                     </div>
                     <div class="card-content"  >
-                       <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm.value)">
+                       <form #loginForm="ngForm"  (ngSubmit)="onSubmit(loginForm.value)">
                             <div class="row" >
                                 <div class="form-group form-black label-floating is-empty col-md-5" >
                                     <label for="name">User Name</label>
-                                    <input width="50" type="text" #user_name="ngModel" name="user_name" id="user_name" class="form-control" id="name" [(ngModel)]="model.user_name" minlength="5" required>
+                                    <input width="50" type="text" #username="ngModel" name="username" id="username" class="form-control" id="name" [(ngModel)]="model.username" minlength="5" required>
                                 </div>
-                                <div *ngIf="user_name.invalid && (user_name.dirty || user_name.touched)" class="alert alert-danger">
-									<div *ngIf="user_name.errors.required">
+                                <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert alert-danger">
+									<div *ngIf="username.errors.required">
 								    	User Name is required.
 								  	</div>
-								  	<div *ngIf="user_name.errors.minlength">
+								  	<div *ngIf="username.errors.minlength">
 								    	User name must be at least 4 characters long.
 								  	</div>
 								</div>
@@ -26,14 +26,14 @@
     						<div class="row">
                                 <div class="form-group form-black col-md-5">
                                     <label for="password">Password</label>
-                                    <input type="password" name="model.user_password" id="user_password" #user_password="ngModel" [(ngModel)]="model.user_password" class="form-control" minlength="8" required>
+                                    <input type="password" name="model.password" id="password" #password="ngModel" [(ngModel)]="model.password" class="form-control" minlength="5" required>
                                 </div>
-                                <div *ngIf="user_password.invalid && (user_password.dirty || user_password.touched)" class="alert alert-danger">
-                                	<div *ngIf="user_password.errors.required">
+                                <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
+                                	<div *ngIf="password.errors.required">
                                 		Password is required
                                 	</div>
-                                	<div *ngIf="user_password.errors.minlength">
-                                		Password must be 8 character in length
+                                	<div *ngIf="password.errors.minlength">
+                                		Password must be 5 character in length
                                 	</div>
                                 </div>
                             </div>
