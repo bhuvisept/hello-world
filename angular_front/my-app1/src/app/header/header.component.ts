@@ -31,14 +31,15 @@ export class HeaderComponent implements OnInit {
 	}
 
   logout() {
-     this.USERID   = this._SharedService.GetUserId();
-     this._loginService.logOut(this.USERID).subscribe(res=>{
-         console.log("Return after logout",this.USERID);
-     },
-     err=>{
-       console.log("You are in error section");
-     });
-     //this._cookieService.removeAll();
-     //this._router.navigate(['/login']);
+     // this.USERID   = this._SharedService.GetUserId();
+     // this._loginService.logOut(this.USERID).subscribe(res=>{
+     //     console.log("Return after logout",this.USERID);
+     //     console.log("Return after logout",res);
+     // },
+     // err=>{
+     //   console.log("You are in error section");
+     // });
+     this._cookieService.removeAll();
+     this._router.navigate(['/login']);
   }
 }

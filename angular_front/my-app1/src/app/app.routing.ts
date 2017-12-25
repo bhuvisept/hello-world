@@ -7,7 +7,7 @@ import { DashboardComponent   } from './dashboard/dashboard.component';
 import { AppComponent         } from './app.component';
 import { LoginComponent       } from './login/login.component';
 
-
+import { RegistrationComponent } from './registration/registration.component';
 const routes: Routes =[
     { 
         path: 'dashboard',
@@ -21,6 +21,10 @@ const routes: Routes =[
         path: '',
         redirectTo: 'login', 
         pathMatch: 'full' 
+    },
+    {
+        path:'registration',
+        component:RegistrationComponent
     }
 ];
 

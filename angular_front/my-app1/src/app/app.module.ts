@@ -13,6 +13,8 @@ import {FormsModule} from '@angular/forms';
 import { HttpModule} from '@angular/http';
 import {SharedService} from './shared_service';
 import {LoginService} from './services/login.service';
+import { FlashMessagesModule } from 'ngx-flash-messages';
+import { RegistrationComponent } from './registration/registration.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import {LoginService} from './services/login.service';
     DashboardComponent,
     LoginComponent,
     SidebarComponent,
-    HeaderComponent
+    HeaderComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +31,8 @@ import {LoginService} from './services/login.service';
     AppRoutingModule,
     FormsModule,
     HttpModule,
-    CookieModule.forRoot()
+    CookieModule.forRoot(),
+    FlashMessagesModule
   ],
   providers: [CookieModule,SharedService,LoginService],
   bootstrap: [AppComponent]

@@ -2,14 +2,16 @@
     <!-- class="main-content" -->
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-6" >
+            <div class="col-md-10" >
                 <div class="card" >
                     <div class="card-header" data-background-color="red">
-                        <h4 class="title">Login</h4>
+                        <h4 class="title">Registration</h4>
                     </div>
-                    <div class="errorMessage"> <ngx-flash-messages></ngx-flash-messages></div> 
+                    <div class="errorMessage"> 
+                    	<ngx-flash-messages></ngx-flash-messages>
+                    </div> 
                     <div class="card-content"  >
-                       <form #loginForm="ngForm"  (ngSubmit)="onSubmit(loginForm.value)">
+                       <form #registrationForm="ngForm"  (ngSubmit)="onSubmit(registrationForm.value)">
                             <div class="row" >
                                 <div class="form-group form-black label-floating is-empty col-md-5" >
                                     <label for="name">User Name</label>
@@ -38,20 +40,12 @@
                                 	</div>
                                 </div>
                             </div>
-    						<button type="submit" [disabled]="!loginForm.valid" class="btn btn-danger pull-left">Login</button>
+    						<button type="submit" [disabled]="!registrationForm.valid" class="btn btn-danger pull-left">Login</button>
                             <div class="clearfix"></div>
                         </form>
-                        <div>
-                                <a href="/registration">Registration</a>&nbsp;|&nbsp;
-                               <!--  <a href="/registration" (click)= 'forgot_password()'>Forgot Password ?</a> -->
-                        </div>
                     </div>
-
                 </div>
-
             </div>
-
          </div>
-
     </div>
 </div>

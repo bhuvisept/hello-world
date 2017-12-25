@@ -5,17 +5,18 @@ import { Router } from '@angular/router';
 @Injectable()
 export class SharedService  {
 	cookieValue : object;
-
+	
 	constructor(private cookieService:CookieService,private _router:Router) {
 		this.cookieValue = this.cookieService.getObject('USERDATA');
-		if(! this.cookieValue){
-			this._router.navigate(['/login']);
-		}
+		// if(! this.cookieValue){
+		// 	this._router.navigate(['/login']);
+		// }
 		
 	}
 
 	//
 	public GetUserId(){
+		
 		this.cookieValue = this.cookieService.getObject('USERDATA');
 		return (this.cookieValue) ? this.cookieValue.UserID : null;
 	}

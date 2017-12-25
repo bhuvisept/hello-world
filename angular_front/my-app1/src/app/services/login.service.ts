@@ -16,7 +16,7 @@ export class LoginService {
 		return this._http.post(Settings.HOSTNAME+"/oauth2/token/",userData,{headers: this.headers}).map((res:Response) => res.json());
 	}
 	public logOut(UserID){
-		console.log("this is service page",UserID);
-		return this._http.post(Settings.HOSTNAME+"/",UserID).map((res:Response)=>res.json());
+		//console.log("this is service page",UserID);
+		return this._http.post(Settings.HOSTNAME+"/adminlogin/logOut?id="+UserID).map((res:Response)=>res.json());
 	}
 } 

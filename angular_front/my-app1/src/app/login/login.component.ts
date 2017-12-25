@@ -1,10 +1,10 @@
 import { Component, OnInit,Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-//import 'rxjs/add/operator/map';
-// SERVICE INCLUDED HERE
 import {LoginService} from '../services/login.service';
-
+import { FlashMessagesService } from 'ngx-flash-messages';
 import { CookieService } from 'ngx-cookie';
+
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
       private _loginService:LoginService,
       private cookieService:CookieService,
       private router: Router,  
+      private flashMessagesService: FlashMessagesService,
     ){
       this.model=new loginModel();
     }
@@ -31,12 +32,12 @@ export class LoginComponent implements OnInit {
     ngOnInit() {
         
     }
+    
     onSubmit(){
        
         this._loginService.login(this.model).subscribe(res=>{
           this.cookieService.putObject('USERDATA',res);
           this.cookieValue = this.cookieService.getObject('USERDATA');
-          //console.log("==========",this.cookieValue);
           if(res.UserID){
             this.router.navigate(['/dashboard']);
           }else{
@@ -44,7 +45,12 @@ export class LoginComponent implements OnInit {
           }
         },
         err=>{
-          console.log("You are in error section");
+              if(err.status==403 && err.statusText=='Forbidden'){
+                  this.flashMessagesService.show("User name and password is n't correct.Please try again..", {
+                    classes: ['alert', 'alert-warning'], // You can pass as many classes as you need
+                    timeout: 2000, // Default is 3000
+                  });
+              }
         });
     }
     
