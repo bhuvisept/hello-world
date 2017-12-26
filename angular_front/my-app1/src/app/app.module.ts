@@ -15,6 +15,7 @@ import {SharedService} from './shared_service';
 import {LoginService} from './services/login.service';
 import { FlashMessagesModule } from 'ngx-flash-messages';
 import { RegistrationComponent } from './registration/registration.component';
+import {RegistrationService} from './registration/services/registration.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import { RegistrationComponent } from './registration/registration.component';
     CookieModule.forRoot(),
     FlashMessagesModule
   ],
-  providers: [CookieModule,SharedService,LoginService],
+  providers: [CookieModule,SharedService,LoginService,RegistrationService],
   bootstrap: [AppComponent]
 })
 

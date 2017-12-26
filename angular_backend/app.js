@@ -34,6 +34,7 @@ var adminLoginObj = require('./app/models/adminlogins/adminlogin.js');
 
 require('./routes/oauth2')(app, express, passport);
 require('./routes/adminlogin')(app, express, passport);
+require('./routes/userregistration')(app, express, passport);
 require('./routes/user')(app, express, passport);
 require('./routes/client')(app, express, passport);
 
