@@ -13,8 +13,8 @@ var AccessToken   = require('../models/accesstoken');
 
 passport.use('client-basic',new BasicStrategy(
     function(username, password, callback) {
-        //console.log("8888888888888");
-        User.findOne({ username: username }, function (err, user) {
+        
+        User.findOne({ email_address: username }, function (err, user) {
             if (err) { 
                 return callback(err); 
             }
@@ -52,7 +52,7 @@ passport.use('client-basic', new BasicStrategy(
         console.log("I am in basic client section");
 
         Client.findOne({ id: username }, function (err, client) {
-            //console.log("I am in basic client section",client);
+            
             if (err) { return callback(err); }
 
             // No client found with that id or bad password
@@ -60,21 +60,21 @@ passport.use('client-basic', new BasicStrategy(
 
             // Make sure the secret is correct
             client.verifySecret(password, function(err, isMatch) {
-                //console.log("I am in basic client section===",isMatch);
+               
                 if (err) { 
                     return callback(err); 
                 }
-                //console.log("err",err);
+                
                 
                 // Password did not match
 
                 if (!isMatch) {
-                    //console.log("hello");
+                    
                     return callback(null, false);
                 }
                 
                 // Success
-                //console.log("client????????????????????",client);
+               
                 return callback(null, client);
                 
             });

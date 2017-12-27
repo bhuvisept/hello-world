@@ -12,7 +12,7 @@
                        <form #loginForm="ngForm"  (ngSubmit)="onSubmit(loginForm.value)">
                             <div class="row" >
                                 <div class="form-group form-black label-floating is-empty col-md-5" >
-                                    <label for="name">User Name</label>
+                                    <label for="name">Email</label>
                                     <input width="50" type="text" #username="ngModel" name="username" id="username" class="form-control" id="name" [(ngModel)]="model.username" minlength="5" required>
                                 </div>
                                 <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert alert-danger">

@@ -12,7 +12,7 @@ exports.postClients = function(req, res) {
     client.secret = req.body.secret;
     // client.userId = req.user._id;
     client.userId = '5a099384d3a5072d6dc7b13b';
-
+                     
     // Save the client and check for errors
     client.save(function(err) {
         if (err)

@@ -113,7 +113,7 @@ server.exchange(oauth2orize.exchange.clientCredentials(function(client, scope, c
     });  
 
 }))
-//console.log("dsdfsdfsdgdsg");
+
 
 //AFTER HITTING ROUTE THIS FUNCTION WILL CALL , THIS WILL VERIFY USER NAME AND PASSWORD, 
 // IF PASSWORD IS MATCHED , NEW TOKEN IS CREATED ,EXPIRE DATE CREATED 
@@ -121,10 +121,10 @@ server.exchange(oauth2orize.exchange.password(function (client, username, passwo
     console.log("I am in exchange password section");
     console.log('password',password);
     //console.log("dfgdfg"); return false;
-    User.findOne({username: username}, function (err, user) {
+    User.findOne({email_address: username}, function (err, user) {
         if (err) return callback(err)
         if (!user) return callback(null, false)
-       // console.log('user: ',user);
+       
         // Make sure the password is correct
         user.verifyPassword(password, function(err, isMatch) {
             if (err) { return callback(err); }
@@ -134,8 +134,7 @@ server.exchange(oauth2orize.exchange.password(function (client, username, passwo
            // console.log('password:- ',isMatch);
             var token            = uid(256);
             var refreshToken     = uid(256);
-            //console.log('token:- ',token);
-            //console.log('refreshToken:- ',refreshToken);
+            
 
             var tokenHash        = crypto.createHash('sha1').update(token).digest('hex');
             var refreshTokenHash = crypto.createHash('sha1').update(refreshToken).digest('hex');

@@ -19,7 +19,7 @@ var UserSchema = new mongoose.Schema({
 // Execute before each user.save() call
 UserSchema.pre('save', function(callback) {
   var user = this;
-
+ console.log("User :");
   // Break out if the password hasn't changed
   if (!user.isModified('password')) return callback();
 
@@ -38,8 +38,24 @@ UserSchema.pre('save', function(callback) {
 
 
 UserSchema.methods.verifyPassword = function(password, cb) {
+  console.log("iiii,",password)
+
+  console.log("--------",this.password)
+  
+  bcrypt.genSalt(5, function(err, salt) {
+    if (err) return callback(err);
+    console.log("iiii,",password);
+    bcrypt.hash(password, salt, null, function(err, hash) {
+      if (err) return callback(err);
+      
+      console.log("Crypt Password",hash);
+      
+    });
+  });
+
+
   bcrypt.compare(password, this.password, function(err, isMatch) {
-    
+     console.log("iiii===",isMatch)
     if (err) return cb(err);
     cb(null, isMatch);
   });

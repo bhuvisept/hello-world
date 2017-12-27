@@ -4,51 +4,38 @@ var bcrypt = require('bcrypt-nodejs');
 
 
 exports.saveUserData = function(req,res){
-	console.log(" I am in BE registration controller",req.body);
-	console.log("Password ",req.body.password);
 	var errorMessage = "";
  	var outputJSON = "";
  	var registerModelObj = {};
  	registerModelObj = req.body;
 
- 	bcrypt.genSalt(5, function(err, salt,callback) {
-	    if (err) return callback(err);
-		bcrypt.hash(req.body.password, salt, null, function(err, hash) {
-	     	if (err) return callback(err);
-	      	registerModelObj.password = hash;
-
-	      	userRegistrationObj(registerModelObj).save(req.body,function(Usererr,Userres){
-	      		console.log("=====ERR======",Usererr);
-	      		console.log("====RES=======",Userres);
-	      		if(Usererr){
-	      			switch(Usererr.name) {
-	      				case 'ValidationError' :
-	      				for(field in Usererr.errors) {
-		 					if(errorMessage == "") {
-		 						errorMessage = Usererr.errors[field].message;
-		 					}
-		 					else {							
-		 						errorMessage+=", " + Usererr.errors[field].message;
-		 					}
-						}//for loop closed
-						break;
-					}//switch  closed
-					
-					outputJSON = {'status': 'failure', 'messageId':401, 'message':errorMessage};
-					res.status(401).jsonp(outputJSON);
-				}else{
-					console.log("success--==",Userres);
-	      			outputJSON = {
-	      				'status':'success',
-	      				'messageId':200,
-	      				'message':'User saved successfully'
-	      			}
-	      			res.status(200).jsonp(outputJSON);
-	      		}
-	      	});
-	    });
+ 	userRegistrationObj(registerModelObj).save(req.body,function(Usererr,Userres){
+	    if(Usererr){
+  			switch(Usererr.name) {
+  				case 'ValidationError' :
+      				for(field in Usererr.errors) {
+	 					if(errorMessage == "") {
+	 						errorMessage = Usererr.errors[field].message;
+	 					}else {							
+	 						errorMessage+=", " + Usererr.errors[field].message;
+	 					}
+					}//for loop closed
+				break;
+				case 'MongoError':
+					errorMessage = 	req.body.email_address+" email is already exist.Please try again..";
+				break;
+			}//switch  closed
+			outputJSON = {'status': 'failure', 'messageId':401, 'message':errorMessage};
+			res.status(401).jsonp(outputJSON);
+		}else{
+			outputJSON = {
+  				'status':'success',
+  				'messageId':200,
+  				'message':'User saved successfully'
+  			}
+  			res.status(200).jsonp(outputJSON);
+  		}
   	});
-  	
 }
 
 // var refreshTokenObj = require('./../../models/refreshtoken.js');

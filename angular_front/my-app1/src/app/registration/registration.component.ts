@@ -14,7 +14,7 @@ import {RegistrationService} from './services/registration.service';
 @Injectable()
 export class RegistrationComponent implements OnInit {
 	model:registrationModel;
-	//model:any={}; 
+	
 	username:string;
   password:string;
 	constructor(
@@ -32,7 +32,7 @@ export class RegistrationComponent implements OnInit {
     console.log('I am in registration FE controller',this.model);
      this._registrationService.registration(this.model).subscribe(res=>{
         console.log("fsdfsdf",res);
-       if(res.status=='failure' && res.messageId==401){
+         if(res.status=='failure' && res.messageId==401){
             
              this._flashMessage.show(res.message, {
                classes: ['alert', 'alert-warning'], // You can pass as many classes as you need
@@ -49,13 +49,13 @@ export class RegistrationComponent implements OnInit {
          }
     },
     err=>{
-        console.log("Return after regsfdsafasfistration service====",err);
-        // if(err.status=='failure' && err.messageId==401){
-        //     this._flashMessage.show("User name and password is n't correct.Please try again..", {
-        //       classes: ['alert', 'alert-warning'], // You can pass as many classes as you need
-        //       timeout: 2000, // Default is 3000
-        //     });
-        // }
+      var ErrParse = JSON.parse(err._body);
+      if(ErrParse.status=='failure' && ErrParse.messageId==401){
+        this._flashMessage.show(ErrParse.message, {
+          classes: ['alert', 'alert-warning'], // You can pass as many classes as you need
+          timeout: 10000, // Default is 3000
+        });
+      }
     });
   }
 
