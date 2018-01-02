@@ -10,6 +10,7 @@ var UserSchema = new mongoose.Schema({
     lastname:{type:String,required:true},
     contact_number:{type:Number,required:true},
     gender:{type:String,required:true},
+    date_of_birth:{type:Date},
     address:{type:String},
     password: {type: String,required: true },
     created: {type: Date, default: Date.now },

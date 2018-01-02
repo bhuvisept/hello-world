@@ -2,6 +2,7 @@ import { Component, OnInit,Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { FlashMessagesService } from 'ngx-flash-messages';
 import {RegistrationService} from './services/registration.service';
+import {INgxMyDpOptions, IMyDateModel} from 'ngx-mydatepicker';
 
 @Component({
   selector: 'app-registration',
@@ -24,7 +25,16 @@ export class RegistrationComponent implements OnInit {
     ){ 
   		this.model = new registrationModel();
 	}
- 
+   // optional date changed callback
+    onDateChanged(event: IMyDateModel): void {
+        // date selected
+    }
+
+
+    myOptions: INgxMyDpOptions = {
+        // other options...
+        dateFormat: 'dd/mm/yyyy',
+    };
   ngOnInit() {
 
   }

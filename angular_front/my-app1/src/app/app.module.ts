@@ -17,6 +17,8 @@ import { FlashMessagesModule } from 'ngx-flash-messages';
 import { RegistrationComponent } from './registration/registration.component';
 import {RegistrationService} from './registration/services/registration.service';
 
+import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,10 +35,14 @@ import {RegistrationService} from './registration/services/registration.service'
     FormsModule,
     HttpModule,
     CookieModule.forRoot(),
-    FlashMessagesModule
+    FlashMessagesModule,
+    NgxMyDatePickerModule.forRoot()
   ],
   providers: [CookieModule,SharedService,LoginService,RegistrationService],
   bootstrap: [AppComponent]
 })
 
-export class AppModule { }
+export class AppModule {
+
+
+}

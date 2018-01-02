@@ -95,6 +95,18 @@
                                     Gender required. 
                                 </div> 
                             </div>
+                            <div class="row" >
+                                <div class="form-group form-black label-floating is-empty col-md-5" >
+                                    <div class="input-group">
+                                        <input class="form-control" style="float:none" placeholder="Date of birth" ngx-mydatepicker name="date_of_birth"
+                                               [(ngModel)]="model.date_of_birth" [options]="myOptions" #dp="ngx-mydatepicker" (dateChanged)="onDateChanged($event)"/>
+
+                                        <span class="input-group-btn">
+                                           <i class="material-icons" (click)="dp.toggleCalendar()" style="cursor:pointer;">&#xE916;</i>
+                                        </span>
+                                    </div>
+                            </div>
+                        </div>
                             <div class="row">
                                 <div class="form-group form-black label-floating is-empty col-md-5">
                                     <label for="Address">Address</label>
