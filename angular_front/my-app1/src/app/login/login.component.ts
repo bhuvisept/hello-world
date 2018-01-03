@@ -1,9 +1,9 @@
 import { Component, OnInit,Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import {LoginService} from '../services/login.service';
-import { FlashMessagesService } from 'ngx-flash-messages';
-import { CookieService } from 'ngx-cookie';
 
+import { CookieService } from 'ngx-cookie';
+import { SweetAlertService} from 'ngx-sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +23,8 @@ export class LoginComponent implements OnInit {
       private _loginService:LoginService,
       private cookieService:CookieService,
       private router: Router,  
-      private flashMessagesService: FlashMessagesService,
+  
+      private _swal2:SweetAlertService;
     ){
       this.model=new loginModel();
     }
@@ -39,17 +40,17 @@ export class LoginComponent implements OnInit {
           this.cookieService.putObject('USERDATA',res);
           this.cookieValue = this.cookieService.getObject('USERDATA');
           if(res.UserID){
-            this.router.navigate(['/dashboard']);
+            this._swal2.success({ title: "You are successfully loged in !" }).then(()=>{
+               this.router.navigate(['/dashboard']);
+            });
+           
           }else{
             this.router.navigate(['/login']);
           }
         },
         err=>{
               if(err.status==403 && err.statusText=='Forbidden'){
-                  this.flashMessagesService.show("User name and password is n't correct.Please try again..", {
-                    classes: ['alert', 'alert-warning'], // You can pass as many classes as you need
-                    timeout: 2000, // Default is 3000
-                  });
+                  this._swal2.error({ title: "User name and password is n't correct.Please try again.." });
               }
         });
     }

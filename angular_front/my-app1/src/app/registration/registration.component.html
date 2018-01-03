@@ -45,6 +45,7 @@
                                     <label for="name">Email</label>
                                     <input width="50" type="email" #email_address="ngModel" name="email_address" id="email_address" class="form-control" [(ngModel)]="model.email_address" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"   required>
                                 </div>
+
                                 <div *ngIf="email_address.invalid && (email_address.dirty || email_address.touched)" class="alert alert-danger">
                                     <div *ngIf="email_address.errors.required">
                                         Email is required.
@@ -64,7 +65,7 @@
                                         Contact number is required.
                                     </div>
                                     <div *ngIf="contact_number.errors.minlength">
-                                        Last name must be at least 5 characters long.
+                                        Contact number must be 10 digitlong.
                                     </div>
                                      <div *ngIf="contact_number.hasError('pattern')">
                                         Contact number should be only numbers
@@ -96,15 +97,24 @@
                                 </div> 
                             </div>
                             <div class="row" >
-                                <div class="form-group form-black label-floating is-empty col-md-5" >
+                                <div class="form-group form-black label-floating is-empty col-md-6" >
+                                    <label for="Gender">Date of Birth</label>
                                     <div class="input-group">
-                                        <input class="form-control" style="float:none" placeholder="Date of birth" ngx-mydatepicker name="date_of_birth"
-                                               [(ngModel)]="model.date_of_birth" [options]="myOptions" #dp="ngx-mydatepicker" (dateChanged)="onDateChanged($event)"/>
+                                        <input class="form-control" style="float:none" ngx-mydatepicker name="date_of_birth" [(ngModel)]="model.date_of_birth" [options]="myOptions" #dp="ngx-mydatepicker" required (dateChanged)="onDateChanged($event)"/>
 
                                         <span class="input-group-btn">
                                            <i class="material-icons" (click)="dp.toggleCalendar()" style="cursor:pointer;">&#xE916;</i>
                                         </span>
-                                    </div>
+                                        
+                                        <div *ngIf= "!model.date_of_birth" style="width:150px;">
+                                            Date of birth is required
+                                        </div>
+                                        <!-- <div *ngIf="date_of_birth.invalid && (date_of_birth.dirty || date_of_birth.touched)" class="alert alert-danger">
+                                        <div *ngIf="date_of_birth.errors.required">
+                                            Password is required
+                                        </div>
+                                    </div> -->
+                                 </div>
                             </div>
                         </div>
                             <div class="row">

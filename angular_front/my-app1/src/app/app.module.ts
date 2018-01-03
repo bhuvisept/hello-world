@@ -19,6 +19,9 @@ import {RegistrationService} from './registration/services/registration.service'
 
 import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
 
+import { SweetAlertService } from 'ngx-sweetalert2';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +29,8 @@ import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
     LoginComponent,
     SidebarComponent,
     HeaderComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +42,7 @@ import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
     FlashMessagesModule,
     NgxMyDatePickerModule.forRoot()
   ],
-  providers: [CookieModule,SharedService,LoginService,RegistrationService],
+  providers: [CookieModule,SharedService,LoginService,RegistrationService,SweetAlertService],
   bootstrap: [AppComponent]
 })
 

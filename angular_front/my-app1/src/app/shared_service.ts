@@ -6,22 +6,25 @@ import { Router } from '@angular/router';
 export class SharedService  {
 	cookieValue : object;
 	
+	 
 	constructor(private cookieService:CookieService,private _router:Router) {
 		this.cookieValue = this.cookieService.getObject('USERDATA');
-		// if(! this.cookieValue){
-		// 	this._router.navigate(['/login']);
-		// }
+		var ristrictUrl = window.location.pathname;
+		if(! this.cookieValue && ristrictUrl !='/registration'){
+		 	this._router.navigate(['/login']);
+		}
 		
 	}
-
-	//
 	public GetUserId(){
-		
 		this.cookieValue = this.cookieService.getObject('USERDATA');
 		return (this.cookieValue) ? this.cookieValue.UserID : null;
 	}
 	public GetUserName(){
 		this.cookieValue = this.cookieService.getObject('USERDATA');
+		
 		return (this.cookieValue)?this.cookieValue.username:null;
+	}
+	public GetUserData(){
+		console.log("User Data");
 	}
 }

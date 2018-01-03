@@ -147,6 +147,7 @@ server.exchange(oauth2orize.exchange.password(function (client, username, passwo
                 expirationDate: expirationDate, 
                 clientId: client._id,                
                 userId: user._id,
+
                 scope: ''
             });
 
@@ -165,7 +166,7 @@ server.exchange(oauth2orize.exchange.password(function (client, username, passwo
                     
                     console.log("refreshtoken Saved: "+user);
                     if (err) return callback(err)
-                    callback(null, token, refreshToken, {expires_in: expirationDate,UserID:user._id,username:user.username,password:user.password})    
+                    callback(null, token, refreshToken, {expires_in: expirationDate,UserID:user._id,username:user.firstname,lastname:user.lastname,password:user.password})    
                 });    
             });                        
         });

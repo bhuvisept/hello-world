@@ -1,0 +1,58 @@
+<div >
+    <!-- class="main-content" -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6" >
+                <div class="card" >
+                    <div class="card-header" data-background-color="red">
+                        <h4 class="title">User Profile</h4> {{UserData}} {{USERNAME}}
+                    </div>
+                    <div class="errorMessage"> <ngx-flash-messages></ngx-flash-messages></div> 
+                    <div class="card-content"  >
+                       <form #loginForm="ngForm"  (ngSubmit)="onSubmit(loginForm.value)">
+                            <div class="row" >
+                                <div class="form-group form-black label-floating is-empty col-md-5" >
+                                    <label for="name">Email</label>
+                                    <input width="50" type="text" #username="ngModel" name="username" id="username" class="form-control" id="name" [(ngModel)]="model.username" minlength="5" required>
+                                </div>
+                                <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert alert-danger">
+									<div *ngIf="username.errors.required">
+								    	User Name is required.
+								  	</div>
+								  	<div *ngIf="username.errors.minlength">
+								    	User name must be at least 4 characters long.
+								  	</div>
+								</div>
+                            </div>
+    						<div class="row">
+                                <div class="form-group form-black col-md-5">
+                                    <label for="password">Password</label>
+                                    <input type="password" name="model.password" id="password" #password="ngModel" [(ngModel)]="model.password" class="form-control" minlength="5" required>
+                                </div>
+                                <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
+                                	<div *ngIf="password.errors.required">
+                                		Password is required
+                                	</div>
+                                	<div *ngIf="password.errors.minlength">
+                                		Password must be 5 character in length
+                                	</div>
+                                </div>
+                            </div>
+    						<button type="submit" [disabled]="!loginForm.valid" class="btn btn-danger pull-left">Login</button>
+                            <div class="clearfix"></div>
+                        </form>
+                        <div>
+                                <a href="/registration">Registration</a>&nbsp;|&nbsp;
+                               <!--  <a href="/registration" (click)= 'forgot_password()'>Forgot Password ?</a> -->
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+         </div>
+
+    </div>
+</div>
+

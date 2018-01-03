@@ -8,6 +8,7 @@ import { AppComponent         } from './app.component';
 import { LoginComponent       } from './login/login.component';
 
 import { RegistrationComponent } from './registration/registration.component';
+import {UserProfileComponent } from './user-profile/user-profile.component';
 const routes: Routes =[
     { 
         path: 'dashboard',
@@ -21,6 +22,11 @@ const routes: Routes =[
         path: '',
         redirectTo: 'login', 
         pathMatch: 'full' 
+    },
+    {
+        
+        path:'user-profile',
+        component:UserProfileComponent
     },
     {
         path:'registration',

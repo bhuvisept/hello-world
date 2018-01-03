@@ -1,14 +1,17 @@
 var userRegistrationObj = require('./../../models/user.js');
 
 var bcrypt = require('bcrypt-nodejs');
-
+var moment = require('moment');
 
 exports.saveUserData = function(req,res){
 	var errorMessage = "";
  	var outputJSON = "";
  	var registerModelObj = {};
  	registerModelObj = req.body;
-
+ 	//console.log("---------",req.body);
+ 	req.body.date_of_birth = new moment(req.body.date_of_birth.jsdate);
+ 	//console.log("--->>>------",req.body);
+ 	//return false;
  	userRegistrationObj(registerModelObj).save(req.body,function(Usererr,Userres){
 	    if(Usererr){
   			switch(Usererr.name) {

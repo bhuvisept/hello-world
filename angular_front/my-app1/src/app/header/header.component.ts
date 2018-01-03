@@ -29,7 +29,7 @@ export class HeaderComponent implements OnInit {
     	this.USERID 	= this._SharedService.GetUserId();
       this.USERNAME 	= this._SharedService.GetUserName();
 	}
-
+  
   logout() {
      // this.USERID   = this._SharedService.GetUserId();
      // this._loginService.logOut(this.USERID).subscribe(res=>{
