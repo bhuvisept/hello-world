@@ -23,8 +23,7 @@ export class LoginComponent implements OnInit {
       private _loginService:LoginService,
       private cookieService:CookieService,
       private router: Router,  
-  
-      private _swal2:SweetAlertService;
+      private _swal2:SweetAlertService,
     ){
       this.model=new loginModel();
     }

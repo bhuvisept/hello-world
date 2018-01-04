@@ -17,6 +17,8 @@ import { FlashMessagesModule } from 'ngx-flash-messages';
 import { RegistrationComponent } from './registration/registration.component';
 import {RegistrationService} from './registration/services/registration.service';
 
+import {UserProfileService} from './user-profile/services/userprofile.service';
+
 import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
 
 import { SweetAlertService } from 'ngx-sweetalert2';
@@ -42,7 +44,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     FlashMessagesModule,
     NgxMyDatePickerModule.forRoot()
   ],
-  providers: [CookieModule,SharedService,LoginService,RegistrationService,SweetAlertService],
+  providers: [CookieModule,SharedService,LoginService,RegistrationService,UserProfileService,SweetAlertService],
   bootstrap: [AppComponent]
 })
 

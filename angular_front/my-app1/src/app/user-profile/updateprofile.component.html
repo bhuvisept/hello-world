@@ -4,13 +4,13 @@
             <div class="col-md-12" >
                 <div class="card" >
                     <div class="card-header" data-background-color="red">
-                        <h4 class="title">User Profile</h4> 
+                        <h4 class="title">Update Profile</h4> 
                     </div>
                    
                     <div class="card-content"  >
                        <div class="row" >
                             <div class="col-md-2">Name</div>
-                            <div class="col-md-3">{{UserData['firstname']+" "+UserData['lastname']}}</div>
+                            <div class="col-md-3">{{UserData.firstname+" "+UserData.lastname}}</div>
                             <div class="col-md-2">Gender</div>
                             <div class="col-md-3">{{UserData.gender}}</div>
                         </div>
@@ -24,13 +24,12 @@
                         <div class="clearfix">&nbsp;</div>
                         <div class="row" >
                             <div class="col-md-2">Address</div>
-                            <div class="col-md-3">
-                                {{UserData.address ? UserData.address : 'N/A'}}
+                            <div class="col-md-3" *ngIf="UserData.address then thenBlock else elseBlock">
+                                {{UserData.address}}
                             </div>
-                            <!-- <ng-template #elseBlock>N/A</ng-template>  -->
+                            <ng-template #elseBlock>N/A</ng-template> 
                         </div>
-                            <a routerLink="/updateprofile" class="btn btn-green pull-right">Update Profile</a>
-                                
+                            
     				 </div>
                 </div>
             </div>

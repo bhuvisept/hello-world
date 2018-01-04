@@ -18,19 +18,23 @@ const routes: Routes =[
         path :'login',
         component:LoginComponent
     },
-    { 
-        path: '',
-        redirectTo: 'login', 
-        pathMatch: 'full' 
+    {
+        path:'user-profile',
+        component:UserProfileComponent
     },
     {
-        
-        path:'user-profile',
+        path:'updateprofile',
         component:UserProfileComponent
     },
     {
         path:'registration',
         component:RegistrationComponent
+    },
+
+    { 
+        path: '',
+        redirectTo: 'login', 
+        pathMatch: 'full' 
     }
 ];
 
