@@ -23,6 +23,7 @@
     "@angular/router": "^4.2.4",
     "angular-sweetalert-service": "^2.0.2",
     "core-js": "^2.4.1",
+    "moment": "^2.20.1",
     "ngx-cookie": "^2.0.1",
     "ngx-cookie-service": "^1.0.9",
     "ngx-flash-messages": "^1.0.4",

@@ -12,6 +12,10 @@ export class UserProfileService {
 	public ViewProfile(userID){
 		return  this._http.post(Settings.HOSTNAME+"/UserProfile/profileData/?id="+userID).map((res:Response) => res.json());
 	}
+	updateProfile(userData){
+		console.log("========in service ;====",userData);
+		return  this._http.post(Settings.HOSTNAME+"/userregistration/saveUserData/",userData).map((res:Response) => res.json());
+	}
 	
 
 }

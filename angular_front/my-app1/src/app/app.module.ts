@@ -23,6 +23,7 @@ import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
 
 import { SweetAlertService } from 'ngx-sweetalert2';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     SidebarComponent,
     HeaderComponent,
     RegistrationComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    EditProfileComponent
   ],
   imports: [
     BrowserModule,

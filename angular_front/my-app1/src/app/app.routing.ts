@@ -9,6 +9,7 @@ import { LoginComponent       } from './login/login.component';
 
 import { RegistrationComponent } from './registration/registration.component';
 import {UserProfileComponent } from './user-profile/user-profile.component';
+import {EditProfileComponent} from './edit-profile/edit-profile.component';
 const routes: Routes =[
     { 
         path: 'dashboard',
@@ -24,7 +25,7 @@ const routes: Routes =[
     },
     {
         path:'updateprofile',
-        component:UserProfileComponent
+        component:EditProfileComponent
     },
     {
         path:'registration',
